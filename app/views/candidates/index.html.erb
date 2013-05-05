@@ -1,0 +1,30 @@
+<h2>All Candidates</h2>
+
+<p><%= link_to 'Add Candidate', new_candidate_path %></p>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Added On</th>
+    <th>State</th>
+    <th>Started At</th>
+    <th>Actions</th>
+  </tr>
+
+<% @candidates.each do |candidate| %>
+  <tr>
+    <td><%= link_to (h candidate.name), candidate %></td>
+    <td><%= mail_to(h candidate.email) %></td>
+    <td><%= candidate.created_at.to_s(:short) %></td>
+    <td><%= candidate.state %></td>
+    <td><%= candidate.hunt_started_at.to_s(:short) if :not_started != candidate.state %></td>
+    <td><%= render :partial => "actions", :locals => {:candidate => candidate} %></td>
+  </tr>
+<% end %>
+</table>
+
+<p><%= page_entries_info(@candidates) %></p>
+<div class="append-bottom"><%= will_paginate @candidates %></div>
+
+<%= render "zero_clipboard_setup" %>

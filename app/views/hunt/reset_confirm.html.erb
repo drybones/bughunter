@@ -1,0 +1,11 @@
+<h2>Reset bug hunt for <%= @candidate.name %></h2>
+
+<p>Are you sure you want to reset the bug hunt for <%= link_to @candidate.name, @candidate %>?</p>
+
+<% form_tag reset_hunt_path(@candidate.token), :method => :post do %>
+  <p>
+    <%= submit_tag "Reset" %>
+  </p>
+<% end %>
+
+<p><%= link_to 'All Candidates', candidates_path %></p>

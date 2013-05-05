@@ -1,0 +1,51 @@
+<h2>Calculator</h2>
+
+<div id="calculator" class="span-13">
+  <%# The calculator and its JS are loaded in via JS %>
+  <p>Loading...</p>
+</div>
+
+<div id="sidebar" class="span-10 box last">
+  <p>
+  Find as many bugs as you can in this calculator application.  Look for problems in all the following areas: functionality, fitness for purpose, usability, and aesthetics. Do not worry about finding compatibility issues across different web browsers.
+  </p>
+  <p>
+  Take notes of the bugs you find during this exercise. After <%= distance_of_time_in_words(Candidate.hunt_length) %>, the test will end automatically and you will be asked to email us a list of the bugs. You can send this email in your own time; there is no time limit.
+  </p>
+  <p>
+  If you have to leave your computer unexpectedly or are unable to complete the exercise for any reason, please email careers@red-gate.com
+  </p>
+  <p class="large" style="font-weight:bold"><span id="time-remaining"><%= render "time_remaining" %></span> remaining</p>
+  <p>Note: this timer will continue to run down even if you close this web page or shut down your computer.</p>
+</div>
+
+<%# This is shown in two cases: %>
+<%# 1. The client cannot get the timer program (during.js) %>
+<%# 2. The timer program loses connection %>
+<div id="error-message" style="display:none">
+  <p>
+    The bug hunt has lost connection with the server.  Please check your internet connection and <%= link_to "refresh this window", during_hunt_path(@candidate.token) %>.  Please note that the timer will continue to run whilst you do this.
+  </p>
+</div>
+
+<% javascript_tag do %>
+  function show_error() {
+    $("#main").fadeOut("slow", function() { $(this).html($("#error-message").show()).fadeIn("slow") });
+  }
+
+  $.ajax({
+    url: "<%= timer_hunt_path(:token => @candidate.token, :format => 'js') %>",
+    dataType: "script",
+    error: show_error
+  })
+  
+  $.ajax({
+    url: "<%= calculator_path(:token => @candidate.token) %>",
+    dataType: "html",
+    success:
+      function(response, status) {
+        $("#calculator").html(response)
+      },
+    error: show_error
+  })
+<% end %>

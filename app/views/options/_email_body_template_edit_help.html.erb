@@ -1,0 +1,40 @@
+<p>You are editing a template for the body of the email created by the 'Invite' button.  You can use the following variables:</p>
+
+<table>
+  <tr>
+    <th>Variable</th>
+    <th>Description</th>
+  </tr>
+
+  <tr>
+    <td>{{candidate.name}}</td><td>The candidate's name</td>
+  </tr>
+  <tr>
+    <td>{{url}}</td><td>The welcome page for the candidate</td>
+  </tr>
+  <tr>
+    <td>{{current_user.name}}</td><td>Your name</td>
+  </tr>  
+</table>
+
+<p>For example, an email template might look like:</p>
+
+<div class="box" style="font-family: 'Courier New', Courier, monospace">
+  <p>Dear {{candidate.name}},</p>
+  <p>Thank you for applying for a position at Red Gate.</p>
+  <p>As part of your application process, we would like you to complete a bug hunt exercise.  The purpose of this exercise is to help us assess your suitability for the role, and decide whether or not to progress your application further.</p>
+  <p>Click the link below to read more about the bug hunt and to take the test:</p>
+  <p>{{url}}</p>
+  <p>
+    * The bug hunt is a timed exercise that lasts exactly ten minutes, so you will need continuous access to the internet for at least that long
+    <br/>
+    * Further instructions are provided in a welcome page before you start
+  </p>
+  <p>If you have any questions, please contact careers@red-gate.com</p>
+  <p>
+    Thanks,<br/>
+    {{current_user.name}}
+  </p>
+</div>
+
+<p>The 'Invite' buttons may not work if the length of the email body, with its variables substituted, plus the length of the email subject and candidate's email address are together longer than 2083 characters.  Please note that spaces, commas and new lines each count as three characters!</p>

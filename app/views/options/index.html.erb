@@ -1,0 +1,17 @@
+<h2>All Options</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Value</th>
+    <th>Description</th>
+  </tr>
+
+<% @options.each do |option| %>
+  <tr>
+    <td><%= link_to (h option.name), option %></td>
+    <td><%= truncate(option.value) %></td>
+    <td><%= option_description(option) %></td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,31 @@
+$(function() {
+  var status_path = "<%= hunt_status_path(@candidate.token) %>";
+  var before_path = "<%= before_hunt_path(@candidate.token) %>";
+  var after_path  = "<%= after_hunt_path(@candidate.token) %>";
+  
+  var interval_id = window.setInterval(function() {
+    $.ajax({
+      // Ensure the URL is unique to bust IE's cache
+      // See http://en.wikipedia.org/wiki/XMLHTTP#Known_problems for more info
+      // (The alternative would be to make this a post request)
+      url: status_path + "?" + (new Date()).getTime(),
+      dataType: "json",
+      timeout: 10000,
+      success:
+        function(response) {
+          switch(response.state) {
+            case "not_started": window.location = before_path; break; // Should never actually get here, but just in case...
+            case "started": $("#time-remaining").html(response.time_remaining); break;
+            case "finished": window.location = after_path; break;
+          }
+        },
+      error:
+        function() {
+          window.clearInterval(interval_id);
+          window.setTimeout(function() {
+            show_error();
+          }, 5000)
+        }
+    })
+  }, 1000);
+})

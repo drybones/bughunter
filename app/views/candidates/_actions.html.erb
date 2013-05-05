@@ -1,0 +1,38 @@
+<%# Expects candidate as a local %>
+
+<% if :not_started == candidate.state %>
+  <% url_id = dom_id(candidate)+"_url" %>
+  <span id="<%= url_id %>">
+    <%= before_hunt_url(candidate.token) %>
+  </span>
+
+  <% button_id = dom_id(candidate)+"_copy_button" %>
+  <div id="<%= button_id %>" class="button" style="display:none">
+    Copy URL
+  </div>
+
+  <%# the partial zero_clipboard_setup must be included on the same page, *after* these %>
+  <% javascript_tag do %>
+    $(function() {
+      $("#<%= url_id %>").hide();
+      $("#<%= button_id %>").show();
+
+      var clip = new ZeroClipboard.Client();
+      clip.setText("<%= before_hunt_url(candidate.token) %>");
+      clip.glue("<%= button_id %>");
+      $(window).resize(function() { clip.reposition(); })
+    })
+  <% end %>
+
+  &nbsp;
+
+  <div class="button">
+    <%= candidate_invitation_mail_link(candidate, @email_subject, @email_body_renderer) %>
+  </div>
+<% end %>
+
+<% if :finished == candidate.state %>
+  <div class="button">
+    <%= link_to "Reset", reset_hunt_path(candidate.token) %>
+  </div>
+<% end %>

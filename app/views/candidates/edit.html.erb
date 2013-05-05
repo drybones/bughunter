@@ -1,0 +1,22 @@
+<h2>Editing candidate: <%= @candidate.name %></h2>
+
+<% form_for(@candidate) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<ul class="pipes">
+  <li><%= link_to 'Show', @candidate %></li>
+  <li><%= link_to 'All Candidates', candidates_path %></li>
+</ul>

@@ -1,0 +1,46 @@
+<h2>Welcome, <%= @candidate.name %></h2>
+<p class="small quiet">
+  (Please contact careers@red-gate.com if you are not <%= @candidate.name %>)
+</p>
+<p>
+  Thank you for choosing to attempt the bug hunt. First, read the instructions below, then, when you are ready, click the link at the end to begin the exercise. Do not start the exercise until you are sure you have understood the instructions.
+</p>
+<hr />
+<p>
+  You will get to play with a small calculator application for <%= distance_of_time_in_words(Candidate.hunt_length) %>.  Your challenge is to find as many bugs as possible.  Look out for problems with functionality, fitness for purpose, usability and aesthetics.  Do not worry about finding compatibility problems with various web browsers.
+</p>
+<p>
+  You should take notes during the bug hunt.  When the test finishes, we will ask you to email us a list of all the bugs you have found.  After <%= distance_of_time_in_words(Candidate.hunt_length) %>, the test will end automatically and further instructions about sending your findings to Red Gate will be displayed.
+</p>
+<p>
+  You will get <strong>only one attempt</strong> at the bug hunt.  Once you start the exercise, it cannot be paused.  If you lose your internet connection or close your browser, you can reload the page or follow the link sent to you to continue; however, please be aware that the timer will continue to run down even when you are not connected.
+</p>
+<p>
+  If you are unable to complete the bug hunt for any reason, for example if you have to leave your computer unexpectedly, then please contact us at careers@red-gate.com stating the reason.
+</p>
+<p>
+  Good luck.
+</p>
+
+<noscript>
+  <div class="error">
+    You need to enable JavaScript in your browser to do the bug hunt.
+  </div>
+</noscript>
+
+<div id="ie6-error" class="error" style="display:none">
+  The bug hunt will not run on Internet Explorer 6.  Please either upgrade your browser or find a computer with a more recent browser.
+</div>
+
+<p id="start-link" style="display:none" class="large">
+  <%= link_to "Start the Bug Hunt!", start_hunt_path(@candidate.token) %>
+</p>
+
+<% javascript_tag do %>
+  $(function() {
+    if (/MSIE 6/i.test(navigator.userAgent))
+      $("#ie6-error").show();
+    else
+      $("#start-link").show();
+  })
+<% end %>

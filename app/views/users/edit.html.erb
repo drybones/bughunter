@@ -1,0 +1,43 @@
+<h2>Editing user: <%= h @user.name %></h2>
+
+<% form_for(@user) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :login %><br />
+    <%= f.text_field :login %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= label_tag 'password' %><br/>
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= label_tag 'password_confirmation', 'Confirm Password' %><br/>
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <% if current_user.admin? %>
+    <p>
+      <%= f.check_box :admin, :disabled => (@user == current_user) %>
+      <%= label_tag 'user_admin', 'Administrator' %> (can create, edit and delete other users)
+    </p>
+  <% end %>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+
+<ul class="pipes">
+  <li><%= link_to 'Show', @user %></li>
+  <% if current_user.admin? %>
+    <li><%= link_to 'All Users', users_path %></li>
+  <% end %>
+</ul>

@@ -1,0 +1,13 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "ZeroClipboard" %>
+  <% javascript_tag do %>
+    ZeroClipboard.setMoviePath("/flashes/ZeroClipboard.swf");
+  <% end %>
+<% end %>
+
+<%# Force a reposition of all clips.  Without this, all but the last clip in the table seem to be in the wrong place %>
+<% javascript_tag do %>
+  $(function() {
+    $(window).resize();
+  })
+<% end %>

@@ -1,0 +1,68 @@
+<!-- This calculator is based on the tutorial at http://www.anaesthetist.com/mnm/javascript/calc.htm -->
+<form name="Calculator">
+  <table>
+    <tr>
+      <td colspan="2"> 
+        <input type="text" maxlength="40" name="Display" onChange="FixCurrent()">
+      </td>
+    </tr> 
+    <tr>
+      <td class="numpad">
+     
+        <table>
+          <tr> 
+            <td><input type="button" value="1" OnClick="AddDigit('1')" tabindex="1" class="green"></td> 
+            <td><input type="button" value="2" OnClick="AddDigit('2')" tabindex="2" class="green"></td> 
+            <td><input type="button" value="3" OnClick="AddDigit('3')" tabindex="2" class="green"></td> 
+          </tr>
+          <tr> 
+            <td><input type="button" value="4" OnClick="AddDigit('4')" tabindex="1" class="green"></td> 
+            <td><input type="button" value="5" OnClick="AddDigit('5')" style="right:2px" class="green"></td> 
+            <td><input type="button" value="6" OnClick="AddDigit('6')" tabindex="3" class="green"></td> 
+          </tr>
+          <tr> 
+            <td><input type="button" value="7" OnClick="AddDigit('7')" tabindex="1" class="green"></td> 
+            <td><input type="button" value="8" OnClick="AddDigit('8')" tabindex="3" class="green"></td> 
+            <td><input type="button" value="9" OnClick="AddDigit('9')" style="top:1px" class="green"></td> 
+          </tr>
+          <tr> 
+            <td><input type="button" value="+/-" OnClick="PlusMinus()" tabindex="3" style="font-size:95%" class="red"></td> 
+            <td><input type="button" value="0" OnClick="AddDigit('0')" class="red"></td> 
+            <td><input type="button" value="." OnClick="Dot()" class="red"></td> 
+          </tr> 
+        </table> 
+     
+      </td>
+      <td class="keypad">
+       
+        <div style="overflow:scroll">
+          <table>
+            <tr> 
+              <td><input type="button" value="C" OnClick="Clear()" tabindex="5" class="serif" title="Clear"></td> 
+              <td><input type="button" value="AC" OnClick="AllClear()" tabindex="4" class="sans-serif" title="All Clear"></td> 
+            </tr>
+            <tr> 
+              <td><input type="button" value="*" OnClick="Operate('*')" class="serif" title="_"></td> 
+              <td>
+                <!--
+                <input type="button" value="/" OnClick="Operate('/')" tabindex="5" class="sans-serif" title="_">
+                -->
+              </td> 
+            </tr>
+            <tr> 
+              <td><input type="button" value="+" OnClick="Operate('+')" class="serif" title="_"></td> 
+              <td><input type="button" value="-" OnClick="Operate('-')" tabindex="4" class="sans-serif" title="_"></td> 
+            </tr>
+            <tr> 
+              <td><input type="button" value="=" OnClick="Calculate()" style="left:2px" class="serif" title="_"></td> 
+              <td align="right"><input type="button" value="EXP" OnClick="DoExponent()" tabindex="5" class="sans-serif" title="_"></td> 
+            </tr>
+          </table>
+        </div>
+       
+      </td>
+    </tr>
+  </table>
+</form>
+
+<%= render "calculator_js" %>

@@ -1,0 +1,21 @@
+<h2>All Users</h2>
+
+<p><%= link_to 'Add User', signup_path %></p>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Login</th>
+    <th>Email</th>
+    <th>Admin</th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= link_to (h user.name), user  %></td>
+    <td><%=h user.login %></td>
+    <td><%=h user.email %></td>
+    <td><%= user.admin %></td>
+  </tr>
+<% end %>
+</table>

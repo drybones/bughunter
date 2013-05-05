@@ -1,0 +1,98 @@
+ul.pipes {
+  list-style-type:none;
+  margin: 0;
+}
+
+ul.pipes li {
+  display:inline;
+  border-left: 1px solid black;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+ul.pipes li:first-child {
+  display:inline;
+  border-left: none;
+  padding-left: 0;
+  padding-right: 0.5em;
+}
+
+ul.pipes li:last-child {
+  display:inline;
+  padding-left: 0.5;
+  padding-right: 0;
+}
+
+div.button {
+  display:inline;
+  padding: 0.4em;
+  text-align: center;
+  border: 1px solid #c2c2c2;
+  background-color:#f5f5f5;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  font-size: 75%;
+}
+
+div.button.hover, div.button:hover {
+  background-color:#e4e4e4;
+}
+
+div.button.active, div.button:active {
+  background-color:#d3d3d3;
+}
+
+div.button a {
+  color: black;
+  text-decoration: none;
+}
+
+form[name="Calculator"] > table {
+  width:auto;
+  background-color: #aaaaaa;
+  padding-left: 5px;
+  padding-right: 5px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+form[name="Calculator"] input[name="Display"] {
+  width:100%;
+  font-family: Courier New;
+  font-size: 200%;
+  background-color: #dddddd;
+}
+
+form[name="Calculator"] td.numpad {
+  width: 65%;
+}
+
+form[name="Calculator"] td.numpad input {
+  width: 50px;
+  position: relative;
+}
+
+form[name="Calculator"] td.numpad input.green {
+  color: green;
+}
+
+form[name="Calculator"] td.numpad input.red {
+  color: red;
+}
+
+form[name="Calculator"] td.keypad input {
+  width: 35%;
+}
+
+form[name="Calculator"] td.keypad input {
+  width: 40px;
+  position: relative;
+}
+
+form[name="Calculator"] td.keypad input.serif {
+  font-family: Times New Roman, Times, serif;
+}
+
+form[name="Calculator"] td.keypad input.sans-serif {
+  font-family: Arial, Arial, Helvetica, sans-serif;
+}

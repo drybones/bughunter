@@ -1,0 +1,14 @@
+<p>
+  <b>Name:</b>
+  <%=h @option.name %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= simple_format(@option.value) %>
+</p>
+
+<ul class="pipes">
+  <li><%= link_to 'Edit', edit_option_path(@option) %></li>
+  <li><%= link_to 'All Options', options_path %></li>
+</ul>
